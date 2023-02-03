@@ -146,40 +146,99 @@ public class Coffe {
     //       }
     //       System.out.println("알려주어...고맙소...");
     //     }
-    System.out.println(
-      "그대가 알고 싶어하는 사칙연산...더하기 뺴기 곱하기와 나누기...내가 해 드리리다..."
-    );
-    System.out.println(
-      "숫자와 기호.. 그리고 숫자를 빈칸과 함께 입력하시오.. 예를들면... 2 + 4 와 같이.."
-    );
-    int a = input.nextInt();
-    String c = input.next();
-    int b = input.nextInt();
-    if (c.equals("+")) {
-      System.out.println(a + "더하기" + b + "는..." + (a + b) + "라오...");
-    } else if (c.equals("-")) {
-      System.out.println(a + "빼기" + b + "는..." + (a - b) + "라오...");
-    } else if (c.equals("*")) {
-      System.out.println(a + "곱하기" + b + "는..." + (a * b) + "라오...");
-    } else if (c.equals("/")) {
-      if (a != 0 && b != 0) {
-        System.out.println(
-          a +
-          "나누기" +
-          b +
-          "는..." +
-          (a / b) +
-          "라오...그리고 그 나머지는 " +
-          (a % b) +
-          "라오..."
-        );
-      } else {
-        System.out.println("0은 나누거나 나누어질수 없소...");
+
+    // System.out.println(
+    //   "그대가 알고 싶어하는 사칙연산...더하기 뺴기 곱하기와 나누기...내가 해 드리리다..."
+    // );
+    // System.out.println(
+    //   "숫자와 기호.. 그리고 숫자를 빈칸과 함께 입력하시오.. 예를들면... 2 + 4 와 같이.."
+    // );
+    // int a = input.nextInt();
+    // String c = input.next();
+    // int b = input.nextInt();
+    // if (c.equals("+")) {
+    //   System.out.println(a + "더하기" + b + "는..." + (a + b) + "라오...");
+    // } else if (c.equals("-")) {
+    //   System.out.println(a + "빼기" + b + "는..." + (a - b) + "라오...");
+    // } else if (c.equals("*")) {
+    //   System.out.println(a + "곱하기" + b + "는..." + (a * b) + "라오...");
+    // } else if (c.equals("/")) {
+    //   if (a != 0 && b != 0) {
+    //     System.out.println(
+    //       a +
+    //       "나누기" +
+    //       b +
+    //       "는..." +
+    //       (a / b) +
+    //       "라오...그리고 그 나머지는 " +
+    //       (a % b) +
+    //       "라오..."
+    //     );
+    //   } else {
+    //     System.out.println("0은 나누거나 나누어질수 없소...");
+    //   }
+    // } else {
+    //   System.out.println(
+    //     "나는 더하기 빼기 곱하기 나누기 연산만 할 수 있소...."
+    //   );
+    // }
+
+    // System.out.println("그대와 나... 가위바위보로 승부를 짓겠소...");
+    // System.out.println("그대는 무엇을 내시겠소..?");
+    // String selMine = input.next();
+    // if (
+    //   selMine.equals("가위") || selMine.equals("바위") || selMine.equals("보")
+    // ) {
+    //   System.out.println("그렇다면 나는 무엇을 내야하겠소...?");
+    //   String selYour = input.next();
+    //   if (selMine.equals(selYour)) {
+    //     System.out.println(selMine + "... 비겼구려...");
+    //   } else if (
+    //     (selMine.equals("가위") && selYour.equals("바위")) ||
+    //     (selMine.equals("바위") && selYour.equals("보")) ||
+    //     (selMine.equals("보") && selYour.equals("가위"))
+    //   ) {
+    //     System.out.println(
+    //       selMine + "...? 나는" + selYour + "이니... 내가 이겼구려..."
+    //     );
+    //   } else if (
+    //     (selMine.equals("가위") && selYour.equals("보")) ||
+    //     (selMine.equals("바위") && selYour.equals("가위")) ||
+    //     (selMine.equals("보") && selYour.equals("바위"))
+    //   ) {
+    //     System.out.println(
+    //       selMine + "...? 나는" + selYour + "이니... 내가 졌구려..."
+    //     );
+    //   } else {
+    //     System.out.println(
+    //       selYour + "...? 그것은 무엇이오...? 정체도 모르는것을 낼 수 없소..."
+    //     );
+    //   }
+    // } else {
+    //   System.out.println(
+    //     selMine + "...? 그것은 무엇이오...? 다시 기회를 드리겠소..."
+    //   );
+    // }
+
+    // for (int i = 2; i <= 9; i++) {
+    //   if (i == 3) continue;
+    //   System.out.print(i + "단~! ");
+    //   for (int j = 2; j <= 9; j++) {
+    //     System.out.print(i + "*" + j + "=" + i * j);
+    //     System.out.print("\t");
+    //   }
+    //   System.out.println();
+    // }
+
+    for (int i = 0; i < 5; i++) {
+      for (int j = 0; j < 9 - i; j++) {
+        if (j < i) {
+          System.out.print(" ");
+        } else {
+          System.out.print(j);
+        }
       }
-    } else {
-      System.out.println(
-        "나는 더하기 빼기 곱하기 나누기 연산만 할 수 있소...."
-      );
+      System.out.println();
     }
   }
 }
