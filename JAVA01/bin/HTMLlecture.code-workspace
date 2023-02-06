@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "../../../HTMLlecture"
+	},
+	{
+		"path": "../../../JSlecture"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "JSlecture"
+  }
+}
