@@ -4,59 +4,86 @@ import javax.swing.plaf.nimbus.AbstractRegionPainter;
 public class Practice01 {
 
   public static void main(String[] args) {
-    // ColorTV myTV = new ColorTV(32, 1024);
-    // myTV.printProperty();
-    // IPTV ipTV = new IPTV("192.1.1.1", 32, 2048);
-    // ipTV.printProperty();
+    System.out.print("몇 번째 실습을 실행하시겠습니까>>>");
+    Scanner input = new Scanner(System.in);
+    int runNum = input.nextInt();
+    switch (runNum) {
+      case 1:
+        ColorTV myTV = new ColorTV(32, 1024);
+        myTV.printProperty();
+        break;
+      case 2:
+        IPTV ipTV = new IPTV("192.1.1.1", 32, 2048);
+        ipTV.printProperty();
+        break;
+      case 3:
+        // 실습 3번
+        Won2Dollar toDollar = new Won2Dollar(1200);
+        toDollar.run();
 
-    // 실습 3번
-    // Won2Dollar toDollar = new Won2Dollar(1200);
-    // toDollar.run();
+        break;
+      case 4:
+        // 실습 4번
+        Km2Mile toMile = new Km2Mile(1.6);
+        toMile.run();
 
-    // 실습 4번
-    // Km2Mile toMile = new Km2Mile(1.6);
-    // toMile.run();
+        break;
+      case 5:
+        // 실습 5번
+        ColorPoint cp = new ColorPoint(5, 5, "YELLOW");
+        cp.setXY(10, 20);
+        cp.setColor("RED");
+        String str = cp.toString();
+        System.out.println(str + "입니다.");
 
-    // 실습 5번
-    // ColorPoint cp = new ColorPoint(5, 5, "YELLOW");
-    // cp.setXY(10, 20);
-    // cp.setColor("RED");
-    // String str = cp.toString();
-    // System.out.println(str + "입니다.");
+        break;
+      case 6:
+        // 실습 6번
+        ColorPoint zeroPoint = new ColorPoint();
+        System.out.println(zeroPoint.toString() + "입니다.");
 
-    // 실습 6번
-    // ColorPoint zeroPoint = new ColorPoint();
-    // System.out.println(zeroPoint.toString() + "입니다.");
+        ColorPoint cp2 = new ColorPoint(10, 10);
+        cp2.setXY(5, 5);
+        cp2.setColor("RED");
+        System.out.println(cp2.toString() + "입니다.");
 
-    // ColorPoint cp = new ColorPoint(10, 10);
-    // cp.setXY(5, 5);
-    // cp.setColor("RED");
-    // System.out.println(cp.toString() + "입니다.");
+        break;
+      case 7:
+        // 실습 7번
+        Point3D p = new Point3D(1, 2, 3);
+        System.out.println(p.toString() + "입니다.");
 
-    // 실습 7번
-    // Point3D p = new Point3D(1, 2, 3);
-    // System.out.println(p.toSting() + "입니다.");
+        p.moveUp();
+        System.out.println(p.toString() + "입니다.");
 
-    // p.moveUp();
-    // System.out.println(p.toSting() + "입니다.");
+        p.moveDown();
+        p.move(10, 10);
+        System.out.println(p.toString() + "입니다.");
 
-    // p.moveDown();
-    // p.move(10, 10);
-    // System.out.println(p.toSting() + "입니다.");
+        p.move(100, 200, 300);
+        System.out.println(p.toString() + "입니다.");
 
-    // p.move(100, 200, 300);
-    // System.out.println(p.toSting() + "입니다.");
+        break;
+      case 8:
+        // 실습 8번
+        PositivePoint p2 = new PositivePoint();
+        p2.move(10, 10);
+        System.out.println(p2.toString() + "입니다.");
 
-    // 실습 8번
-    PositivePoint p = new PositivePoint();
-    p.move(10, 10);
-    System.out.println(p.toString() + "입니다.");
+        p2.move(-5, 5);
+        System.out.println(p2.toString() + "입니다.");
 
-    p.move(-5, 5);
-    System.out.println(p.toString() + "입니다.");
+        PositivePoint p3 = new PositivePoint(-10, -10);
+        System.out.println(p3.toString() + "입니다.");
 
-    PositivePoint p2 = new PositivePoint(-10, -10);
-    System.out.println(p2.toString() + "입니다.");
+        break;
+      case 9:
+        break;
+      default:
+        System.out.println("아직 진행하지 않은 실습입니다.");
+
+        break;
+    }
   }
 }
 

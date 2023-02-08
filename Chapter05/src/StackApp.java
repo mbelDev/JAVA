@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.Stack;
 
 interface Stack {
   int length();
@@ -10,18 +9,37 @@ interface Stack {
 
 class StringStack implements Stack {
 
-  Stack<String> stack = new Stack<>();
+  private int maxLength;
+  private int length = 0;
+  private String[] stackArr;
+
+  public StringStack(int _maxLength) {
+    maxLength = _maxLength;
+    stackArr = new String[_maxLength];
+  }
 
   public int length() {
-    return stack.length();
+    return length;
   }
 
   public int capacity() {
-    return stack.length();
+    return maxLength - length;
   }
 
-  boolean push(String val) {
-    return (capacity() == val);
+  public String pop() {
+    length--;
+    return stackArr[length];
+    // return popString;
+  }
+
+  public boolean push(String _val) {
+    if (capacity() == 0) {
+      return false;
+    } else {
+      stackArr[length] = _val;
+      length++;
+      return true;
+    }
   }
 }
 
@@ -29,11 +47,25 @@ public class StackApp {
 
   public static void main(String[] args) {
     Scanner input = new Scanner(System.in);
-    StringStack stringStack = new StringStack();
 
     print("총 스택 저장 공간의 크기 입력 >>");
     int lengthInt = input.nextInt();
-    System.out.println(stringStack.length());
+    StringStack stringStack = new StringStack(lengthInt);
+    while (true) {
+      System.out.print("문자열 입력 >>");
+      String str = input.next();
+      if (str.equals("그만!")) {
+        break;
+      } else {
+        boolean res = stringStack.push(str);
+        if (res == false) {
+          System.out.println("주..죽여줘.. (스택이 꽉 차서 푸쉬 불가)");
+        }
+      }
+    }
+    while (stringStack.length() > 0) {
+      print(stringStack.pop());
+    }
   }
 
   public static void print(String input) {
