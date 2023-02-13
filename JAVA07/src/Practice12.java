@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -61,6 +60,7 @@ public class Practice12 {
       int choise = input.nextInt();
       if (choise == 3) {
         println("\"명품 영어\"를 종료합니다.");
+        input.close();
         break;
       }
       if (choise == 1) {
@@ -72,7 +72,8 @@ public class Practice12 {
         while (true) {
 //          int[] answerList = setTest(answer, word.size());
           int[] answerList = setRand(word.size());
-          int answer = answerList[(int) (Math.random()*3 + 1)];
+          int answer = answerList[(int) (Math.random()*3)];
+          println(answer+"");
           Word thisWord = word.get(answer);
           println(thisWord.getEng() + "?");
           for (int i = 0; i < 4; i++) {
@@ -92,7 +93,6 @@ public class Practice12 {
           if (choiseTest > 0 && choiseTest < 5) {
             //숫자가 1~4의 정수를 벗어나지 않을경우
             Word chooseWord = word.get(answerList[choiseTest - 1]);
-            println(chooseWord.getKor() + "" + thisWord.getKor());
             if (chooseWord.getKor().equals(thisWord.getKor())) {
               println("정답입니다!");
               win++;
@@ -134,7 +134,6 @@ public class Practice12 {
       }
     }
   }
-  
   //랜덤한 숫자 네 개를 넣어주는 함수
   static int[] setRand(int _max) {
 	  int[] newArray = new int[4];
@@ -147,12 +146,13 @@ public class Practice12 {
 		  for(int j=0 ; j<4 ; j++) {
 			  if (newArray[i] == newArray[j] && i != j) {
 				  newArray[j] = (int)(Math.random()*_max);
-				  count++
+				  count++;
 			  }
 		  }
 		  }
 	  if (count == 0) {break;}
 	  }
+    return newArray;
   }
 
   //문제풀이중 보기를 랜덤하게 배치해주는 함수
