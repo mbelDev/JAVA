@@ -70,8 +70,9 @@ public class Practice12 {
           "개의 영어단어가 들어 있습니다. -1을 입력하면 테스트를 종료합니다."
         );
         while (true) {
-          int answer = (int) (Math.random() * word.size());
-          int[] answerList = setTest(answer, word.size());
+//          int[] answerList = setTest(answer, word.size());
+          int[] answerList = setRand(word.size());
+          int answer = answerList[(int) (Math.random()*3 + 1)];
           Word thisWord = word.get(answer);
           println(thisWord.getEng() + "?");
           for (int i = 0; i < 4; i++) {
@@ -132,6 +133,26 @@ public class Practice12 {
         }
       }
     }
+  }
+  
+  //랜덤한 숫자 네 개를 넣어주는 함수
+  static int[] setRand(int _max) {
+	  int[] newArray = new int[4];
+	  for(int item : newArray) {
+		  item = (int)(Math.random()*_max);
+	  }
+	  while(true) {
+		  int count=0;
+	  for(int i=0; i<4 ; i++) {
+		  for(int j=0 ; j<4 ; j++) {
+			  if (newArray[i] == newArray[j] && i != j) {
+				  newArray[j] = (int)(Math.random()*_max);
+				  count++
+			  }
+		  }
+		  }
+	  if (count == 0) {break;}
+	  }
   }
 
   //문제풀이중 보기를 랜덤하게 배치해주는 함수
