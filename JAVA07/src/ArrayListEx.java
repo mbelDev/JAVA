@@ -24,6 +24,7 @@ public class ArrayListEx {
       }
     }
     System.out.println(bestName);
+    input.close();
   }
 
   static String longestName(String[] input) {

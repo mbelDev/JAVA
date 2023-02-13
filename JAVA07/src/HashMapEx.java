@@ -24,6 +24,7 @@ public class HashMapEx {
       println("찾으시는 단어를 입력하시오....");
       String eng = input.next();
       if (eng.equals("exit")) {
+        input.close();
         break;
       }
       String kor = dic.get(eng);

@@ -53,6 +53,7 @@ public class Practice06 {
       println("도시 이름을 입력하시오.. >>");
       String cityName = input.next();
       if (cityName.equals("그만")) {
+        input.close();
         break;
       }
       City city = cityMap.get(cityName);

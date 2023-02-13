@@ -43,6 +43,7 @@ public class Practice07 {
       println("");
     }
     println("___________________________");
+    input.close();
   }
 
   static void print(String txt) {

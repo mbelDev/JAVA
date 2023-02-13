@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 class GenericClass<E> {
 
   private E element;
