@@ -42,6 +42,7 @@ public class Practice08 {
       print("이름과 포인트 입력>>");
       String name = input.next();
       if (name.equals("그만")) {
+        input.close();
         break;
       }
       int point = input.nextInt();

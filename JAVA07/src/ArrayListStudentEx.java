@@ -62,6 +62,7 @@ public class ArrayListStudentEx {
       boolean find = false;
       if (name.equals("그만")) {
         println("그러하시구료...");
+        input.close();
         break;
       }
       for (Student02 item : studentList) {

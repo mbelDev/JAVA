@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -61,6 +60,7 @@ public class Practice12 {
       int choise = input.nextInt();
       if (choise == 3) {
         println("\"명품 영어\"를 종료합니다.");
+        input.close();
         break;
       }
       if (choise == 1) {
