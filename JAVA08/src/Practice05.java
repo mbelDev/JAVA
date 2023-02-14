@@ -17,26 +17,31 @@ public class Practice05 {
     );
     try {
       System.out.print("첫 번째 파일명을 입력하세요 >> ");
-      fileOrigin = new FileInputStream(input.next());
+      String stringOrigin = input.next();
+      fileOrigin = new FileInputStream(stringOrigin);
       System.out.print("두 번째 파일명을 입력하세요 >> ");
-      fileCopy = new FileInputStream(input.next());
+      String stringCopy = input.next();
+      fileCopy = new FileInputStream(stringCopy);
       System.out.println(
-        fileOrigin + "파일과 " + fileCopy + "파일의 비교를 실시합니다."
+        stringOrigin + "파일과 " + stringCopy + "파일의 비교를 실시합니다."
       );
+      System.out.println();
       int read1 = 0;
       int read2 = 0;
       while (true) {
         read1 = fileOrigin.read();
-        read2 = fileOrigin.read();
+        read2 = fileCopy.read();
+        System.out.print("[" + read1 + " / " + read2 + "] ");
         if (read1 != read2) {
           System.out.println("불일치함당!!");
           break;
         }
         if (read1 == -1) {
           System.out.println("일치함당!!");
+          break;
         }
       }
-    } catch (Exception e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
     // finally {
