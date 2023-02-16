@@ -72,16 +72,24 @@ public class DreamMS extends JFrame {
     JLabel leftLabel = new JLabel(setImage(0));
     leftPanel.add(leftLabel, BorderLayout.NORTH);
     leftPanel.setSize(300, 300);
+    JLabel rightTitle = new JLabel(nameList[1]);
+    rightTitle.setHorizontalAlignment(JLabel.CENTER);
+    rightTitle.setFont(new Font("돋움", Font.BOLD, 20));
+    JLabel rightLabel = new JLabel(setImage(1));
+    rightPanel.add(rightLabel, BorderLayout.NORTH);
+    rightPanel.setSize(300, 300);
+
     leftLabel.addMouseListener(
       new MouseAdapter() {
         public void mouseClicked(MouseEvent e) {
           if (round < 9) {
             round++;
-            leftLabel.setIcon(setImage(round));
-            leftTitle.setText(nameList[round]);
+            rightLabel.setIcon(setImage(round));
+            rightTitle.setText(nameList[round]);
           } else {
             rightPanel.setVisible(false);
             subPanel.setVisible(false);
+            rightLabel.setIcon(setImage((ImageIcon) rightLabel.getIcon(), 500));
             titleLabel.setText(
               "당신의 모빌슈트는" + leftTitle.getText() + "입니다!!"
             );
@@ -91,22 +99,17 @@ public class DreamMS extends JFrame {
     );
     leftPanel.add(leftTitle);
 
-    JLabel rightTitle = new JLabel(nameList[1]);
-    rightTitle.setHorizontalAlignment(JLabel.CENTER);
-    rightTitle.setFont(new Font("돋움", Font.BOLD, 20));
-    JLabel rightLabel = new JLabel(setImage(1));
-    rightPanel.add(rightLabel, BorderLayout.NORTH);
-    rightPanel.setSize(300, 300);
     rightLabel.addMouseListener(
       new MouseAdapter() {
         public void mouseClicked(MouseEvent e) {
           if (round < 9) {
             round++;
-            rightLabel.setIcon(setImage(round));
-            rightTitle.setText(nameList[round]);
+            leftLabel.setIcon(setImage(round));
+            leftTitle.setText(nameList[round]);
           } else {
             leftPanel.setVisible(false);
             subPanel.setVisible(false);
+            rightLabel.setIcon(setImage((ImageIcon) rightLabel.getIcon(), 500));
             titleLabel.setText(
               "당신의 모빌슈트는" + rightTitle.getText() + "입니다!!"
             );
@@ -128,14 +131,17 @@ public class DreamMS extends JFrame {
     setVisible(true);
   }
 
-  private void callWiner(Component _loser) {
-    _loser.setVisible(false);
-  }
-
   private ImageIcon setImage(int _round) {
     ImageIcon _img = new ImageIcon("images/" + MSlist[_round]);
     Image icon = _img.getImage();
     Image updateImg = icon.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+    ImageIcon updateIcon = new ImageIcon(updateImg);
+    return updateIcon;
+  }
+
+  private ImageIcon setImage(ImageIcon _target, int _size) {
+    Image icon = _target.getImage();
+    Image updateImg = icon.getScaledInstance(_size, _size, Image.SCALE_SMOOTH);
     ImageIcon updateIcon = new ImageIcon(updateImg);
     return updateIcon;
   }
