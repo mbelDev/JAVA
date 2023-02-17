@@ -89,7 +89,7 @@ public class DreamMS extends JFrame {
           } else {
             rightPanel.setVisible(false);
             subPanel.setVisible(false);
-            rightLabel.setIcon(setImage((ImageIcon) rightLabel.getIcon(), 500));
+            leftLabel.setIcon(setImage((ImageIcon) leftLabel.getIcon(), 500));
             titleLabel.setText(
               "당신의 모빌슈트는" + leftTitle.getText() + "입니다!!"
             );
