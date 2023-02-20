@@ -90,6 +90,7 @@ public class Ball {
           (y + speedY < item.y + item.height) &&
           (y + speedY + height > item.y) &&
           !item.isHide
+          // 진행방향 speed 앞에 블록이 있는가?
         ) {
           int checkX = speedX > 0 ? 1 : -1;
           int checkY = speedY > 0 ? 1 : -1;
@@ -98,6 +99,7 @@ public class Ball {
             x + checkX + width < item.x ||
             y + checkY > item.y + item.height ||
             y + checkY + height < item.y
+            //관통하거나 박히지 않게 착지 시켜줌
           ) {
             x += checkX;
             y += checkY;
@@ -142,7 +144,7 @@ public class Ball {
           //         ? item.y + item.height - y
           //         : "상하면 히트!"
           //   );
-          // }
+          // } 아래 코드로 대체됨
 
           if (checkY < 0) { // 상진행중
             checkY = item.y + item.height - y;
@@ -171,13 +173,10 @@ public class Ball {
           item.isHide = true;
           score += 1000 + (100 * combo * combo);
           combo++;
-          break;
+          break; //동시에 여러개 블록에 판정 일어나지않게 멈춰줌
         }
       }
     }
     return score;
   }
-  // 차라리 for [i][j]를 써서 인접 블록이 살아있는지 체크하는건??
-  // 모서리 맞았을 때 측면 판정이 뜬다. 근데 옆 블록이 살아있으면???
-
 }
