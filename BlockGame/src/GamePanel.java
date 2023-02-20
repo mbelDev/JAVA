@@ -10,6 +10,8 @@ public class GamePanel extends JPanel implements Runnable {
   public Block blocks[][];
   public Thread th;
 
+  private int score = 0;
+
   public GamePanel() {
     System.out.println("Game Panel 생성자");
     this.setBackground(Color.BLACK);
@@ -29,6 +31,9 @@ public class GamePanel extends JPanel implements Runnable {
         blocks[i][j].x = (60 + GAP) * j;
         blocks[i][j].y = (30 + GAP) * i;
         blocks[i][j].color = i;
+        if (j % 2 == 0) {
+          blocks[i][j].isHide = true;
+        }
       }
     }
 
@@ -62,11 +67,12 @@ public class GamePanel extends JPanel implements Runnable {
     super.paintComponent(g);
     g.setColor(Color.WHITE);
     g.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
-    g.setColor(Color.RED);
-    g.drawRect(paddle.x, paddle.y, paddle.width, paddle.height);
     g.fillOval(ball.x, ball.y, ball.width, ball.height);
-    g.setColor(Color.RED);
-    g.drawOval(ball.x, ball.y, ball.width, ball.height);
+    // g.setColor(Color.RED);
+    // g.drawRect(paddle.x, paddle.y, paddle.width, paddle.height);
+    // g.drawOval(ball.x, ball.y, ball.width, ball.height);
+    g.setFont(new Font("Arial", Font.PLAIN, 20));
+    g.drawString(Integer.toString(score), 500, 850);
     for (int i = 0; i < 5; i++) {
       for (int j = 0; j < 10; j++) {
         if (blocks[i][j].color == 0) {
@@ -90,6 +96,27 @@ public class GamePanel extends JPanel implements Runnable {
         }
       }
     }
+    if (ball.combo > 0) {
+      g.setFont(new Font("Arial", Font.PLAIN, 24));
+      g.drawString(Integer.toString(ball.combo) + "COMBO", 500, 450);
+    }
+    for (int i = 0; i < ball.life; i++) {
+      g.setColor(Color.WHITE);
+      g.fillOval(30 + (i * 20 + 20), 850, 10, 10);
+    }
+
+    if (!ball.moving) {
+      g.setColor(Color.WHITE);
+      g.setFont(new Font("Arial", Font.BOLD, 32));
+      g.drawString("READY", 250, 400);
+      g.setFont(new Font("Arial", Font.BOLD, 18));
+      g.drawString("Press Space to Start", 220, 480);
+    }
+    if (ball.life < 0) {
+      g.setColor(Color.RED);
+      g.setFont(new Font("Arial", Font.BOLD, 32));
+      g.drawString("GAME OVER", 220, 400);
+    }
   }
 
   @Override
@@ -103,17 +130,75 @@ public class GamePanel extends JPanel implements Runnable {
       repaint();
       paddleMove();
       ball.move(paddle);
-      ball.checkCollision(blocks);
+      score += ball.checkCollision(blocks);
+      // for (Block itemList[] : blocks) {
+      //   for (Block item : itemList) {
+      //     if (!item.isHide) {
+      //       if (
+      //         hitObject(
+      //           new Rectangle(ball.x, ball.y, ball.width, ball.height),
+      //           new Rectangle(item.x, item.y, item.width, item.height)
+      //         )
+      //       ) {
+      //         item.isHide = true;
+      //         // ball.speedX = -ball.speedX;
+      //         // ball.speedY = -ball.speedY;
+
+      //         if (
+      //           ball.x + ball.width - item.x < 5 ||
+      //           ball.x - item.x + item.width < 5
+      //         ) {
+      //           ball.speedX = -ball.speedX;
+      //           System.out.print(
+      //             ball.x + ball.width - item.x < 5
+      //               ? "좌측면 충돌"
+      //               : ball.x - item.x + item.width < 5
+      //                 ? "우측면 충돌"
+      //                 : "측면충돌"
+      //           );
+      //           System.out.println(
+      //             ball.x + ball.width - item.x < 5
+      //               ? ball.x + ball.width - item.x
+      //               : ball.x - item.x + item.width < 5
+      //                 ? "우측면 충돌"
+      //                 : "측면충돌"
+      //           );
+      //         }
+      //         if (
+      //           item.y - ball.y + ball.height < 5 ||
+      //           item.y + item.height - ball.y < 5
+      //         ) {
+      //           ball.speedY = -ball.speedY;
+      //           System.out.print(
+      //             item.y - ball.y + ball.height < 5
+      //               ? "하면 충돌"
+      //               : item.y + item.height - ball.y < 5
+      //                 ? "상면 충돌"
+      //                 : "상하면충돌"
+      //           );
+      //           System.out.println(
+      //             item.y - ball.y + ball.height < 5
+      //               ? item.y - ball.y + ball.height
+      //               : item.y + item.height - ball.y < 5
+      //                 ? item.y + item.height - ball.y
+      //                 : "상하면충돌"
+      //           );
+      //         }
+      //         break;
+      //       }
+      //     }
+      //   }
+      // }
     }
   }
 
   public void paddleMove() {
-    if (paddle.isLeft) {
+    if (paddle.isLeft && paddle.x > 0) {
       paddle.x -= 10;
       if (!ball.moving) {
         ball.x -= 10;
       }
-    } else if (paddle.isRight) {
+    } else if (paddle.isRight && paddle.x + paddle.width < 618) {
       paddle.x += 10;
       if (!ball.moving) {
         ball.x += 10;
@@ -125,4 +210,12 @@ public class GamePanel extends JPanel implements Runnable {
     ball.x += ball.speedX;
     ball.y += ball.speedY;
   }
+
+  public boolean hitObject(Rectangle ball, Rectangle rect) {
+    return ball.intersects(rect);
+  }
 }
+// 벽돌꺠기류 RPG하고싶당
+// 장외는 없다, 최대한 스타일리시하게 벽돌을 꺠 보자구~!
+// 캐릭터별 스킬 잔뜩~
+// 캐릭터 충돌(+speed)판정시 휘두르는 모션.
